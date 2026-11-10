@@ -1,0 +1,278 @@
+// ========== Палитра: нейтральные, бежевые и пудрово-розовые тона ==========
+$ivory:   #fbf7f3;
+$cream:   #f4ebe2;
+$beige:   #e9ddd0;
+$blush:   #f1dcd6;
+$rose:    #c99a9a;
+$rose-dk: #a87474;
+$gold:    #b8956a;
+$taupe:   #5a4a44;
+$text:    #4a3f3a;
+$line:    #e4d8cc;
+
+$font-head: "Cormorant", Georgia, serif;
+$font-body: "RalewayLocal", Arial, sans-serif;
+
+@font-face {
+    font-family: "Cormorant";
+    src: url("../fonts/CormorantGaramond.ttf");
+    font-weight: 300 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: "RalewayLocal";
+    src: url("../fonts/Raleway.ttf");
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@mixin flexible() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin container($w: 1240px) {
+    width: min(100% - 48px, #{$w});
+    margin-inline: auto;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: $ivory;
+    color: $text;
+    font-family: $font-body;
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 16px;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: $rose-dk; transition: color .25s; &:hover { color: $gold; } }
+h1, h2, h3, h4 { font-family: $font-head; font-weight: 500; color: $taupe; line-height: 1.15; margin: 0 0 .5em; }
+p { margin: 0 0 1em; }
+
+// ---------- кнопки ----------
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border: 1px solid $rose-dk;
+    border-radius: 40px;
+    background: $rose-dk;
+    color: #fff;
+    font: 600 .85rem/1 $font-body;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .25s, color .25s, transform .25s, box-shadow .25s;
+    &:hover { background: $gold; border-color: $gold; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba($gold, .3); }
+    &--ghost { background: transparent; color: $rose-dk; &:hover { background: $rose-dk; border-color: $rose-dk; } }
+    &--small { padding: 10px 20px; font-size: .75rem; }
+}
+
+// ---------- верхняя полоса и шапка ----------
+.topbar {
+    @include flexible();
+    gap: 28px;
+    padding: 8px 16px;
+    background: $beige;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    a { color: $taupe; text-decoration: none; font-weight: 600; &:hover { color: $rose-dk; } }
+}
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 14px max(24px, calc((100% - 1240px) / 2));
+    background: rgba($ivory, .94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid $line;
+}
+.logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+    &__text { display: flex; flex-direction: column; line-height: 1.1; }
+    &__text b { font: 600 1.45rem $font-head; color: $taupe; letter-spacing: .04em; white-space: nowrap; }
+    &__text small { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: $gold; white-space: nowrap; }
+    &--light { margin-bottom: 14px; }
+    &--light &__text b { color: #fff; }
+    &--light &__text small { color: $blush; }
+}
+.nav {
+    display: flex; align-items: center; gap: 6px;
+    a {
+        padding: 9px 16px; border-radius: 30px; color: $taupe; text-decoration: none;
+        font-size: .88rem; letter-spacing: .04em; transition: background .25s, color .25s;
+        &:hover { background: $blush; color: $rose-dk; }
+        &[aria-current="page"] { background: $blush; color: $rose-dk; font-weight: 600; }
+    }
+    .btn { margin-left: 10px; }
+}
+.burger-toggle { display: none; }
+.burger { display: none; }
+
+// ---------- первый экран ----------
+.hero {
+    @include container();
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 56px;
+    padding: 64px 0 40px;
+    &__text h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); letter-spacing: .01em; }
+    &__img { border-radius: 220px 220px 24px 24px; overflow: hidden; aspect-ratio: 9/10; box-shadow: 0 24px 60px rgba($taupe, .14); }
+    &__img img { width: 100%; height: 100%; object-fit: cover; }
+    &__btns { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 36px; }
+}
+.eyebrow { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: $gold; font-weight: 600; margin-bottom: 18px; }
+.lead { font-size: 1.1rem; max-width: 34em; }
+.facts {
+    display: flex; flex-wrap: wrap; gap: 28px 40px; list-style: none; padding: 24px 0 0; margin: 0; border-top: 1px solid $line;
+    li { display: flex; flex-direction: column; }
+    b { font: 600 1.9rem $font-head; color: $rose-dk; }
+    span { font-size: .82rem; color: $text; opacity: .85; }
+}
+
+// ---------- секции ----------
+.section {
+    @include container();
+    padding: 72px 0;
+    &--tint { width: 100%; max-width: none; background: $cream; padding-inline: max(24px, calc((100% - 1240px) / 2)); }
+    &--narrow { width: min(100% - 48px, 860px); }
+    &__title { text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.8rem); text-transform: none; }
+    &__lead { text-align: center; max-width: 44em; margin: 0 auto 44px; }
+}
+.section--tint .section__title { margin-bottom: 44px; }
+
+// ---------- каталог ----------
+.catalog { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 30px; }
+.card {
+    display: flex; flex-direction: column; background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 6px 24px rgba($taupe, .07); transition: transform .3s, box-shadow .3s;
+    &:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba($taupe, .14); }
+    &__img { overflow: hidden; aspect-ratio: 4/5; }
+    &__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    &:hover &__img img { transform: scale(1.05); }
+    h3 { font-size: 1.45rem; margin: 20px 22px 8px; }
+    p { margin: 0 22px 16px; font-size: .92rem; flex: 1; }
+    &__foot { display: flex; justify-content: space-between; align-items: center; padding: 0 22px 22px; }
+}
+.price { font: 600 1.15rem $font-head; color: $rose-dk; }
+.note { text-align: center; margin: 32px 0 0; font-size: .8rem; opacity: .7; }
+
+// ---------- шахматка ----------
+@for $i from 1 through 4 {
+    .line#{$i} {
+        display: flex; align-items: center; gap: 56px; margin-bottom: 56px;
+        @if $i % 2 == 0 { flex-direction: row-reverse; }
+        &:last-child { margin-bottom: 0; }
+    }
+}
+.line {
+    &__img, &__text { flex: 1 1 50%; }
+    &__img { aspect-ratio: 3/2; border-radius: 22px; overflow: hidden; box-shadow: 0 12px 36px rgba($taupe, .12); }
+    &__img img { width: 100%; height: 100%; object-fit: cover; }
+    &__text h3 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
+}
+
+// ---------- шаги ----------
+.steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; list-style: none; padding: 0; margin: 44px 0 0;
+    li { text-align: center; padding: 28px 20px; border: 1px solid $line; border-radius: 18px; background: #fff; transition: border-color .3s, transform .3s; &:hover { border-color: $rose; transform: translateY(-4px); } }
+    h3 { font-size: 1.35rem; }
+    p { font-size: .9rem; margin: 0; }
+}
+.steps__n { @include flexible(); width: 46px; height: 46px; margin: 0 auto 14px; border-radius: 50%; background: $blush; color: $rose-dk; font: 600 1.3rem $font-head; }
+
+// ---------- FAQ ----------
+.faq { margin-top: 36px; }
+details {
+    border-bottom: 1px solid $line;
+    summary {
+        list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative;
+        font: 500 1.3rem $font-head; color: $taupe; transition: color .25s;
+        &::-webkit-details-marker { display: none; }
+        &::after { content: "+"; position: absolute; right: 8px; top: 14px; font-size: 1.8rem; color: $rose-dk; transition: transform .3s; }
+        &:hover { color: $rose-dk; }
+    }
+    &[open] summary::after { transform: rotate(45deg); }
+    p { padding: 0 40px 20px 0; margin: 0; }
+}
+
+// ---------- призыв ----------
+.cta {
+    @include container(1000px);
+    margin-block: 40px 80px; padding: 64px 24px; text-align: center; border-radius: 32px;
+    background: linear-gradient(135deg, $blush, $cream);
+    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); max-width: 18em; margin-inline: auto; }
+    p { max-width: 32em; margin: 0 auto 28px; }
+}
+
+// ---------- подвал ----------
+.footer {
+    display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 40px; padding: 56px max(24px, calc((100% - 1240px) / 2)) 24px;
+    background: $taupe; color: $beige;
+    h4 { color: #fff; font-size: 1.3rem; }
+    ul { list-style: none; padding: 0; margin: 0; li { margin-bottom: 8px; } }
+    a { color: $beige; text-decoration: none; &:hover { color: $blush; } }
+    p { font-size: .9rem; }
+    &__copy { grid-column: 1 / -1; margin: 24px 0 0; padding-top: 20px; border-top: 1px solid rgba(#fff, .15); font-size: .78rem; opacity: .7; }
+}
+
+// ---------- модальное окно ----------
+.modal {
+    border: none; border-radius: 22px; padding: 0; width: min(92vw, 480px); background: $ivory; color: $text;
+    &::backdrop { background: rgba($taupe, .55); backdrop-filter: blur(3px); }
+    &__form { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 36px 32px 32px; }
+    h2 { font-size: 2rem; margin: 0; }
+    &__lead { margin: 0 0 6px; font-size: .92rem; }
+    label { display: flex; flex-direction: column; gap: 6px; font-size: .82rem; font-weight: 600; letter-spacing: .03em; }
+    input:not([type=checkbox]) { padding: 12px 14px; border: 1px solid $line; border-radius: 12px; background: #fff; font: 400 .95rem $font-body; color: $text; transition: border-color .25s, box-shadow .25s; &:focus { outline: none; border-color: $rose; box-shadow: 0 0 0 3px rgba($rose, .2); } &:invalid:not(:placeholder-shown) { border-color: #c47b7b; } }
+    .check { flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 400; font-size: .78rem; }
+    &__close { position: absolute; right: 16px; top: 10px; border: none; background: none; font-size: 2rem; line-height: 1; color: $rose-dk; cursor: pointer; }
+    &__ok { color: #4f7a5a; font-weight: 600; margin: 0; }
+}
+
+// ---------- акцент страницы (цикл по карте) ----------
+$accents: (dresses: $rose-dk, accessories: $gold, atelier: #9a8576, suits: #7b7585);
+@each $page, $color in $accents {
+    .page-#{$page} .eyebrow { color: $color; }
+    .page-#{$page} .price,
+    .page-#{$page} .facts b { color: $color; }
+}
+
+// ---------- адаптив ----------
+@media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; &__img { max-width: 520px; margin-inline: auto; width: 100%; } }
+    .catalog { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .footer { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 960px) {
+    .burger { display: flex; flex-direction: column; gap: 6px; padding: 8px; cursor: pointer;
+        span { display: block; width: 28px; height: 2px; background: $taupe; transition: transform .3s, opacity .3s; } }
+    .nav {
+        display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0;
+        padding: 10px 24px 22px; background: $ivory; border-bottom: 1px solid $line;
+        a { text-align: center; padding: 14px; border-radius: 0; border-bottom: 1px solid $line; }
+        .btn { margin: 14px 0 0; }
+    }
+    .burger-toggle:checked ~ .nav { display: flex; }
+    .burger-toggle:checked ~ .burger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+    .burger-toggle:checked ~ .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .topbar { flex-direction: column; gap: 2px; }
+    @for $i from 1 through 4 { .line#{$i} { flex-direction: column; gap: 22px; } }
+    .section { padding: 48px 0; }
+    .section--tint { padding-inline: 24px; }
+}
+@media (max-width: 560px) {
+    .catalog { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .footer { grid-template-columns: 1fr; }
+}

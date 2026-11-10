@@ -1,0 +1,767 @@
+@font-face {
+  font-family: "Cormorant";
+  src: url("../fonts/CormorantGaramond.ttf");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RalewayLocal";
+  src: url("../fonts/Raleway.ttf");
+  font-weight: 100 900;
+  font-display: swap;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fbf7f3;
+  color: #4a3f3a;
+  font-family: "RalewayLocal", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #a87474;
+  transition: color 0.25s;
+}
+a:hover {
+  color: #b8956a;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Cormorant", Georgia, serif;
+  font-weight: 500;
+  color: #5a4a44;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid #a87474;
+  border-radius: 40px;
+  background: #a87474;
+  color: #fff;
+  font: 600 0.85rem/1 "RalewayLocal", Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.btn:hover {
+  background: #b8956a;
+  border-color: #b8956a;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 149, 106, 0.3);
+}
+.btn--ghost {
+  background: transparent;
+  color: #a87474;
+}
+.btn--ghost:hover {
+  background: #a87474;
+  border-color: #a87474;
+}
+.btn--small {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 8px 16px;
+  background: #e9ddd0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.topbar a {
+  color: #5a4a44;
+  text-decoration: none;
+  font-weight: 600;
+}
+.topbar a:hover {
+  color: #a87474;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 14px max(24px, (100% - 1240px) / 2);
+  background: rgba(251, 247, 243, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e4d8cc;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo__text b {
+  font: 600 1.45rem "Cormorant", Georgia, serif;
+  color: #5a4a44;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.logo__text small {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b8956a;
+  white-space: nowrap;
+}
+.logo--light {
+  margin-bottom: 14px;
+}
+.logo--light .logo__text b {
+  color: #fff;
+}
+.logo--light .logo__text small {
+  color: #f1dcd6;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav a {
+  padding: 9px 16px;
+  border-radius: 30px;
+  color: #5a4a44;
+  text-decoration: none;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  transition: background 0.25s, color 0.25s;
+}
+.nav a:hover {
+  background: #f1dcd6;
+  color: #a87474;
+}
+.nav a[aria-current=page] {
+  background: #f1dcd6;
+  color: #a87474;
+  font-weight: 600;
+}
+.nav .btn {
+  margin-left: 10px;
+}
+
+.burger-toggle {
+  display: none;
+}
+
+.burger {
+  display: none;
+}
+
+.hero {
+  width: min(100% - 48px, 1240px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 56px;
+  padding: 64px 0 40px;
+}
+.hero__text h1 {
+  font-size: clamp(2.4rem, 4.6vw, 4rem);
+  letter-spacing: 0.01em;
+}
+.hero__img {
+  border-radius: 220px 220px 24px 24px;
+  overflow: hidden;
+  aspect-ratio: 9/10;
+  box-shadow: 0 24px 60px rgba(90, 74, 68, 0.14);
+}
+.hero__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 28px 0 36px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b8956a;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.lead {
+  font-size: 1.1rem;
+  max-width: 34em;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 40px;
+  list-style: none;
+  padding: 24px 0 0;
+  margin: 0;
+  border-top: 1px solid #e4d8cc;
+}
+.facts li {
+  display: flex;
+  flex-direction: column;
+}
+.facts b {
+  font: 600 1.9rem "Cormorant", Georgia, serif;
+  color: #a87474;
+}
+.facts span {
+  font-size: 0.82rem;
+  color: #4a3f3a;
+  opacity: 0.85;
+}
+
+.section {
+  width: min(100% - 48px, 1240px);
+  margin-inline: auto;
+  padding: 72px 0;
+}
+.section--tint {
+  width: 100%;
+  max-width: none;
+  background: #f4ebe2;
+  padding-inline: max(24px, (100% - 1240px) / 2);
+}
+.section--narrow {
+  width: min(100% - 48px, 860px);
+}
+.section__title {
+  text-align: center;
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  text-transform: none;
+}
+.section__lead {
+  text-align: center;
+  max-width: 44em;
+  margin: 0 auto 44px;
+}
+
+.section--tint .section__title {
+  margin-bottom: 44px;
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 30px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(90, 74, 68, 0.07);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(90, 74, 68, 0.14);
+}
+.card__img {
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+.card:hover .card__img img {
+  transform: scale(1.05);
+}
+.card h3 {
+  font-size: 1.45rem;
+  margin: 20px 22px 8px;
+}
+.card p {
+  margin: 0 22px 16px;
+  font-size: 0.92rem;
+  flex: 1;
+}
+.card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 22px 22px;
+}
+
+.price {
+  font: 600 1.15rem "Cormorant", Georgia, serif;
+  color: #a87474;
+}
+
+.note {
+  text-align: center;
+  margin: 32px 0 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.line1 {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 56px;
+}
+.line1:last-child {
+  margin-bottom: 0;
+}
+
+.line2 {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 56px;
+  flex-direction: row-reverse;
+}
+.line2:last-child {
+  margin-bottom: 0;
+}
+
+.line3 {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 56px;
+}
+.line3:last-child {
+  margin-bottom: 0;
+}
+
+.line4 {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin-bottom: 56px;
+  flex-direction: row-reverse;
+}
+.line4:last-child {
+  margin-bottom: 0;
+}
+
+.line__img, .line__text {
+  flex: 1 1 50%;
+}
+.line__img {
+  aspect-ratio: 3/2;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(90, 74, 68, 0.12);
+}
+.line__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.line__text h3 {
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 44px 0 0;
+}
+.steps li {
+  text-align: center;
+  padding: 28px 20px;
+  border: 1px solid #e4d8cc;
+  border-radius: 18px;
+  background: #fff;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.steps li:hover {
+  border-color: #c99a9a;
+  transform: translateY(-4px);
+}
+.steps h3 {
+  font-size: 1.35rem;
+}
+.steps p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.steps__n {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: #f1dcd6;
+  color: #a87474;
+  font: 600 1.3rem "Cormorant", Georgia, serif;
+}
+
+.faq {
+  margin-top: 36px;
+}
+
+details {
+  border-bottom: 1px solid #e4d8cc;
+}
+details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 40px 20px 0;
+  position: relative;
+  font: 500 1.3rem "Cormorant", Georgia, serif;
+  color: #5a4a44;
+  transition: color 0.25s;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::after {
+  content: "+";
+  position: absolute;
+  right: 8px;
+  top: 14px;
+  font-size: 1.8rem;
+  color: #a87474;
+  transition: transform 0.3s;
+}
+details summary:hover {
+  color: #a87474;
+}
+details[open] summary::after {
+  transform: rotate(45deg);
+}
+details p {
+  padding: 0 40px 20px 0;
+  margin: 0;
+}
+
+.cta {
+  width: min(100% - 48px, 1000px);
+  margin-inline: auto;
+  margin-block: 40px 80px;
+  padding: 64px 24px;
+  text-align: center;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #f1dcd6, #f4ebe2);
+}
+.cta h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  max-width: 18em;
+  margin-inline: auto;
+}
+.cta p {
+  max-width: 32em;
+  margin: 0 auto 28px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr;
+  gap: 40px;
+  padding: 56px max(24px, (100% - 1240px) / 2) 24px;
+  background: #5a4a44;
+  color: #e9ddd0;
+}
+.footer h4 {
+  color: #fff;
+  font-size: 1.3rem;
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer ul li {
+  margin-bottom: 8px;
+}
+.footer a {
+  color: #e9ddd0;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: #f1dcd6;
+}
+.footer p {
+  font-size: 0.9rem;
+}
+.footer__copy {
+  grid-column: 1/-1;
+  margin: 24px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.modal {
+  border: none;
+  border-radius: 22px;
+  padding: 0;
+  width: min(92vw, 480px);
+  background: #fbf7f3;
+  color: #4a3f3a;
+}
+.modal::backdrop {
+  background: rgba(90, 74, 68, 0.55);
+  backdrop-filter: blur(3px);
+}
+.modal__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 32px 32px;
+}
+.modal h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.modal__lead {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+}
+.modal label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.modal input:not([type=checkbox]) {
+  padding: 12px 14px;
+  border: 1px solid #e4d8cc;
+  border-radius: 12px;
+  background: #fff;
+  font: 400 0.95rem "RalewayLocal", Arial, sans-serif;
+  color: #4a3f3a;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.modal input:not([type=checkbox]):focus {
+  outline: none;
+  border-color: #c99a9a;
+  box-shadow: 0 0 0 3px rgba(201, 154, 154, 0.2);
+}
+.modal input:not([type=checkbox]):invalid:not(:placeholder-shown) {
+  border-color: #c47b7b;
+}
+.modal .check {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 0.78rem;
+}
+.modal__close {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  border: none;
+  background: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #a87474;
+  cursor: pointer;
+}
+.modal__ok {
+  color: #4f7a5a;
+  font-weight: 600;
+  margin: 0;
+}
+
+.page-dresses .eyebrow {
+  color: #a87474;
+}
+
+.page-dresses .price,
+.page-dresses .facts b {
+  color: #a87474;
+}
+
+.page-accessories .eyebrow {
+  color: #b8956a;
+}
+
+.page-accessories .price,
+.page-accessories .facts b {
+  color: #b8956a;
+}
+
+.page-atelier .eyebrow {
+  color: #9a8576;
+}
+
+.page-atelier .price,
+.page-atelier .facts b {
+  color: #9a8576;
+}
+
+.page-suits .eyebrow {
+  color: #7b7585;
+}
+
+.page-suits .price,
+.page-suits .facts b {
+  color: #7b7585;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 40px;
+  }
+  .hero__img {
+    max-width: 520px;
+    margin-inline: auto;
+    width: 100%;
+  }
+  .catalog {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 960px) {
+  .burger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .burger span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: #5a4a44;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 24px 22px;
+    background: #fbf7f3;
+    border-bottom: 1px solid #e4d8cc;
+  }
+  .nav a {
+    text-align: center;
+    padding: 14px;
+    border-radius: 0;
+    border-bottom: 1px solid #e4d8cc;
+  }
+  .nav .btn {
+    margin: 14px 0 0;
+  }
+  .burger-toggle:checked ~ .nav {
+    display: flex;
+  }
+  .burger-toggle:checked ~ .burger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .burger-toggle:checked ~ .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger-toggle:checked ~ .burger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .topbar {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .line1 {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .line2 {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .line3 {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .line4 {
+    flex-direction: column;
+    gap: 22px;
+  }
+  .section {
+    padding: 48px 0;
+  }
+  .section--tint {
+    padding-inline: 24px;
+  }
+}
+@media (max-width: 560px) {
+  .catalog {
+    grid-template-columns: 1fr;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .footer {
+    grid-template-columns: 1fr;
+  }
+}
